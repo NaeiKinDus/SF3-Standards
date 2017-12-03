@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="Symfony">
+<ruleset name="SF3 Coding Standards">
     <description>The Symfony coding standard.</description>
 
     <!-- There should not be any code in the bundle Resources directory. -->
@@ -19,7 +19,6 @@
     <rule ref="Generic.ControlStructures.InlineControlStructure"/>
     <rule ref="Generic.Formatting.SpaceAfterCast"/>
     <rule ref="Generic.Functions.CallTimePassByReference"/>
-    <rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
     <rule ref="Generic.PHP.LowerCaseConstant"/>
     <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
     <rule ref="Squiz.ControlStructures.ControlSignature"/>
@@ -42,9 +41,6 @@
         <exclude name="PEAR.ControlStructures.ControlSignature"/>
 
         <exclude name="PEAR.Commenting.FunctionComment.SpacingBeforeTags"/>
-
-        <!-- do not check line length -->
-        <exclude name="Generic.Files.LineLength"/>
 
         <!-- covered by Squiz FunctionDeclarationSniff -->
         <exclude name="Generic.Functions.OpeningFunctionBraceBsdAllman.BraceOnSameLine"/>
@@ -97,5 +93,103 @@
 
     <rule ref="Symfony.Commenting.ClassComment.SpacingBeforeTags">
         <message>There should always be a description, followed by a blank line, before the tags of a class comment.</message>
+    </rule>
+
+    <!--
+	Project specific configuration
+    -->
+
+    <!-- Forbid the use of eval() -->
+    <rule ref="Squiz.PHP.Eval" />
+
+    <!-- Statements must have a body -->
+    <rule ref="Generic.CodeAnalysis.EmptyStatement" />
+
+    <!-- Forbid unconditional statements -->
+    <rule ref="Generic.CodeAnalysis.UnconditionalIfStatement" />
+
+    <!-- Forbid methods / functions with unused parameters -->
+    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter" />
+
+    <!-- No inline ifs, force braces -->
+    <rule ref="Generic.ControlStructures.InlineControlStructure">
+      <properties>
+	<property name="error" value="false" />
+      </properties>
+    </rule>
+
+    <!-- Unix-style line endings -->
+    <rule ref="Generic.Files.LineEndings" />
+
+    <!-- Forbid multiple assigments on one line -->
+    <rule ref="Squiz.PHP.DisallowMultipleAssignments"/>
+
+    <!-- Braces for methods must be on a new line -->
+    <rule ref="Generic.Functions.OpeningFunctionBraceBsdAllman" />
+
+    <!-- Disable PHP4-style constructors -->
+    <rule ref="Generic.NamingConventions.ConstructorName" />
+
+    <!-- Upper case constants -->
+    <rule ref="Generic.NamingConventions.UpperCaseConstantName" />
+
+    <!-- camelCase method / function naming -->
+    <rule ref="Generic.NamingConventions.CamelCapsFunctionName" />
+
+    <!-- Forbid deprected PHP functions -->
+    <rule ref="Generic.PHP.DeprecatedFunctions" />
+
+    <!-- Forbid short open tag -->
+    <rule ref="Generic.PHP.DisallowShortOpenTag" />
+
+    <!-- Forbid BC aliased functions usage -->
+    <rule ref="Squiz.PHP.ForbiddenFunctions" />
+
+    <!-- Lower case for true, false and null -->
+    <rule ref="Generic.PHP.LowerCaseConstant" />
+
+    <!-- Space-only indentation -->
+    <rule ref="Generic.WhiteSpace.DisallowTabIndent" />
+
+    <!-- Prevents commented code; if a comment has more than 20% of its
+	 content detected as code, a warning will be raised -->
+    <rule ref="Squiz.PHP.CommentedOutCode">
+      <properties>
+	<property name="maxPercentage" value="20" />
+      </properties>
+    </rule>
+
+    <!-- Forbid call to size functions in loops statement -->
+    <rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops" />
+
+    <!-- Lower case calls to PHP functions only -->
+    <rule ref="Squiz.PHP.LowercasePHPFunctions" />
+
+    <!-- Forbid dead code -->
+    <rule ref="Squiz.PHP.NonExecutableCode" />
+
+    <!-- Enforce scope modifiers (public, protected and private) on fields -->
+    <rule ref="Squiz.Scope.MemberVarScope" />
+
+    <!-- Enforce scope modifiers (public, protected and private) on methods -->
+    <rule ref="Squiz.Scope.MethodScope" />
+
+    <!-- Forbid usage of "$this" in static methods -->
+    <rule ref="Squiz.Scope.StaticThisUsage" />
+
+    <!-- Forbid unnecessary method overriding -->
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod" />
+
+    <!-- No spacing around casts -->
+    <rule ref="Squiz.WhiteSpace.CastSpacing" />
+
+    <!-- No space before semicolons -->
+    <rule ref="Squiz.WhiteSpace.SemicolonSpacing" />
+
+    <rule ref="Generic.Files.LineLength">
+      <properties>
+	<property name="lineLimit" value="200"/>
+	<property name="absoluteLineLimit" value="220"/>
+      </properties>
     </rule>
 </ruleset>
